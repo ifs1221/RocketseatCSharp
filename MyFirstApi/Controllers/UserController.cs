@@ -3,10 +3,25 @@ using MyFirstApi.Communication.Requests;
 
 namespace MyFirstApi.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class UserController : ControllerBase
+public class UserController : MyFirstApiBaseController
 {
+    // criar um endpoint para GetAll
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
+    public IActionResult GetAll()
+    {
+        var key = GetCustomKey();
+        var users = new List<User>
+        {
+            new User { Id = 1, Name = "John", Age = 25 },
+            new User { Id = 2, Name = "Jane", Age = 30 },
+            new User { Id = 3, Name = "Doe", Age = 35 }
+        };
+        return Ok(users);
+    }
+
+
+
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
