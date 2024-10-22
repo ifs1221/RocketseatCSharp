@@ -27,6 +27,7 @@ namespace CashFlow.Api.Filters
                 var errorResponse = new ResponseErrorJson(ex.Errors);
 
                 context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Result = new BadRequestObjectResult(errorResponse);
             }
             else
             {
