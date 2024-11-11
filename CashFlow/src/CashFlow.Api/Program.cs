@@ -1,5 +1,6 @@
 using CashFlow.Api.Filters;
 using CashFlow.Api.Middleware;
+using CashFlow.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,9 @@ builder.Services.AddMvc(options =>
 {
     options.Filters.Add(typeof(ExceptionFilter));
 });
+
+builder.Services.AddInfrastructure();
+
 
 var app = builder.Build();
 
